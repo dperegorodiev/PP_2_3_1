@@ -18,7 +18,7 @@ public class UserController {
         this.userDAO = userDAO;
     }
 
-    @GetMapping
+    @GetMapping("/")
     public String getUsers(Model model) {
         model.addAttribute("users", userDAO.getAllUsers());
         return "users";
@@ -57,7 +57,7 @@ public class UserController {
         return "redirect:/users";
     }
     @GetMapping("/{id}/delete")
-    public String deletUser(@PathVariable("id") long id) {
+    public String deleteUser(@PathVariable("id") long id) {
         userDAO.deleteUser(id);
         return "redirect:/users";
     }

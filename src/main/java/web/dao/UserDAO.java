@@ -1,7 +1,10 @@
 package web.dao;
 
-import org.hibernate.mapping.List;
+
 import web.model.User;
+
+import java.util.List;
+
 
 public interface UserDAO {
     List<User> getAllUsers();

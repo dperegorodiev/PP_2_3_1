@@ -22,13 +22,11 @@ public class UserDAOImp implements UserDAO{
     @Override
     public void createUser(User user) {
         entityManager.persist(user);
-        entityManager.flush();
     }
 
     @Override
     public void updateUser(User user) {
         entityManager.merge(user);
-        entityManager.flush();
     }
 
     @Override
@@ -37,13 +35,11 @@ public class UserDAOImp implements UserDAO{
     }
 
     @Override
-    public User deleteUser(long id) {
+    public void deleteUser(long id) {
         User user = readUser(id);
         if (null == user) {
             throw new NullPointerException("Пользователь не найден");
         }
         entityManager.remove(user);
-        entityManager.flush();
-        return user;
     }
 }

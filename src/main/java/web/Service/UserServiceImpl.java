@@ -39,13 +39,7 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public User deleteUser(long id) {
-        User user = null;
-        try {
-            user = userDAO.deleteUser(id);
-        } catch (NullPointerException e) {
-            e.printStackTrace();
-        }
-        return user;
+    public void deleteUser(long id) {
+        userDAO.deleteUser(id);
     }
 }

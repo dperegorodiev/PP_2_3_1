@@ -35,7 +35,7 @@ public class UserController {
         return "add-user";
     }
 
-    @PostMapping("/users/add")
+    @PostMapping("/add")
     public String addUser(@ModelAttribute("user") User user) {
         userService.createUser(user);
         return "redirect:/users";
@@ -50,7 +50,7 @@ public class UserController {
     }
 
     @PostMapping("/{id}/edit")
-    public String editUser(@RequestParam("id") long id, @ModelAttribute("user") User user, @RequestParam("name") String name) {
+    public String editUser(@RequestParam("id") long id, @RequestParam("name") String name, @ModelAttribute("user") User user) {
         user.setId(id);
         user.setName(name);
         userService.updateUser(user);

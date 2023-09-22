@@ -23,39 +23,41 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
-    public String getUserId(@PathVariable("id") long id, Model model) {
+    public String getUserById(@RequestParam("id") long id, Model model) {
         User user = userService.readUser(id);
         model.addAttribute("users", user);
         return "user";
     }
 
     @GetMapping ("/add")
-    public String addUser(Model model) {
+    public String addUserForm(Model model) {
         model.addAttribute("user", new User());
         return "add-user";
     }
 
-    @PostMapping ("/add")
+    @PostMapping("/users/add")
     public String addUser(@ModelAttribute("user") User user) {
         userService.createUser(user);
         return "redirect:/users";
     }
 
     @GetMapping("/{id}/edit")
-    public String edit(@PathVariable("id") long id, Model model) {
+    public String editUserForm(@RequestParam("id") long id, @RequestParam("name") String name, Model model) {
         User user = userService.readUser(id);
+        user.setName(name);
         model.addAttribute("user", user);
         return "edit-user";
     }
 
-    @GetMapping("/{id}/edit")
-    public String editUser(@PathVariable("id") long id, @ModelAttribute("user") User user) {
+    @PostMapping("/{id}/edit")
+    public String editUser(@RequestParam("id") long id, @ModelAttribute("user") User user, @RequestParam("name") String name) {
         user.setId(id);
+        user.setName(name);
         userService.updateUser(user);
         return "redirect:/users";
     }
     @GetMapping("/{id}/delete")
-    public String deleteUser(@PathVariable("id") long id) {
+    public String deleteUser(@RequestParam("id") long id) {
         userService.deleteUser(id);
         return "redirect:/users";
     }

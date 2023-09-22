@@ -24,23 +24,18 @@ public class UserServiceImpl implements UserService {
     public User readUser(long id) {
         return userDAO.readUser(id);
     }
-    @Override
-    public void createOrUpdateUser(User user) {
-        if (0 == user.getId()) {
-            createUser(user);
-        } else {
-            updateUser(user);
-        }
-    }
 
-    private void createUser(User user) {
-        userDAO.createUser(user);
-    }
 
-    private void updateUser(User user) {
+    public User updateUser(User user) {
         userDAO.updateUser(user);
+        return user;
     }
 
+    @Override
+    public User createUser(User user) {
+        userDAO.createUser(user);
+        return user;
+    }
 
 
     @Override

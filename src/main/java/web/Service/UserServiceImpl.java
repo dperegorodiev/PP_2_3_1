@@ -8,7 +8,7 @@ import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
-@Transactional
+
 public class UserServiceImpl implements UserService {
     private final UserDAO userDAO;
 
@@ -25,19 +25,19 @@ public class UserServiceImpl implements UserService {
         return userDAO.readUser(id);
     }
 
-
+    @Transactional
     public User updateUser(User user) {
         userDAO.updateUser(user);
         return user;
     }
-
+    @Transactional
     @Override
     public User createUser(User user) {
         userDAO.createUser(user);
         return user;
     }
 
-
+    @Transactional
     @Override
     public void deleteUser(long id) {
         userDAO.deleteUser(id);
